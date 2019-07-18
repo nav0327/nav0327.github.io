@@ -1,0 +1,136 @@
+<!-- This code implements the Player-computer Nine Men Morris game. The player plays through the UI and the 
+Computer uses the players board position as input to the alpha-beta pruning algorithm and computes the best move
+and makes the move. The depth of the alpha-beta pruning can be modified. The static function can be improved. The AB algorithm 
+used by the computer combines both the ABOpening and the ABMidGame segments. Player always plays first followed by computer  -->
+<html>
+    <head>
+        <style>   
+            th{
+            /* border: 4px solid #2a4849;  */
+                height: 90px;
+                width: 90px;
+                border: none;
+                padding: 0%;
+            /* font-size: 50px; */
+            /* text-align: center; */
+            /* font-family: 'Permanent Marker', cursive; */
+            }
+            /* div{
+                width: 50%;
+                height: 50%;
+                align-content: center;  
+            } */
+            table{
+                height:630px;
+                width: 630px;
+                background-image:url("D:/Fire Lab/9 Men morris/main (1).png");
+                /* background-position: 0pt; */
+                border-spacing: 0pt;
+                border: none;
+                padding: 0%;
+                letter-spacing: 0ch;
+                word-spacing: 0%;
+                /* background-size: 100%; */
+            }
+            .dot1 {
+                height: 25px;
+                width: 25px;
+                background-color: #00f;
+                border-radius: 50%;
+                display: inline-block;
+            }
+            .dot2 {
+                height: 25px;
+                width: 25px;
+                background-color: #0F0;
+                border-radius: 50%;
+                display: inline-block;
+            }
+            #main {
+                height:650px;
+
+            }
+            .selection{
+                height: 25px;
+                width: 25px;
+                background-color: #000;
+                border-radius: 50%;
+                display: inline-block;
+            }
+        </style>
+        <script type="text/javascript" src="NineMenGame.js">       
+        </script>
+    </head>
+    <body>
+        <div id='main'>
+        <table>
+            <tr>
+                    <th id='20' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='21' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='22' onclick=playerSelection(this.id)></th>
+            </tr>
+            <tr>
+                    <th id='NA'></th>
+                    <th id='17' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='18' onclick=playerSelection(this.id)></th>
+                    <th id='NA' ></th>
+                    <th id='19' onclick=playerSelection(this.id)></th>
+                    <th id='NA' ></th>
+            </tr>
+            <tr>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='14' onclick=playerSelection(this.id)></th>
+                    <th id='15' onclick=playerSelection(this.id)></th>
+                    <th id='16' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+            </tr>
+            <tr>
+                    <th id='8' onclick=playerSelection(this.id)></th>
+                    <th id='9' onclick=playerSelection(this.id)></th>
+                    <th id='10' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='11' onclick=playerSelection(this.id)></th>
+                    <th id='12' onclick=playerSelection(this.id)></th>
+                    <th id='13' onclick=playerSelection(this.id)></th>
+            </tr>
+            <tr>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='6' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='7' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+            </tr>
+            <tr>
+                <th id='NA'></th>
+                <th id='3' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+                <th id='4' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+                <th id='5' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+            </tr>
+            <tr>
+                <th id='0' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+                <th id='NA'></th>
+                <th id='1' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+                <th id='NA'></th>
+                <th id='2' onclick=playerSelection(this.id)></th>
+            </tr>
+        </table>
+        </div>
+        <div id="comment">
+
+        </div>
+    </body>
+</html>
