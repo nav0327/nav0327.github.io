@@ -181,19 +181,13 @@ function gameLife(board){
             alert("Computer Wins");
             mainBoard="xxxxxxxxxxxxxxxxxxxxxxx";
             moveCount = 0;
-            var i;
-            for(i=0; i<23; i++){
-                document.getElementById(i).innerHTML="";
-            }
+            document.location.reload();
         }else if(blacks<=2){
             gameAlive = false;
             alert("Player Wins");
             mainBoard="xxxxxxxxxxxxxxxxxxxxxxx";
             moveCount = 0;
-            var i;
-            for(i=0; i<23; i++){
-                document.getElementById(i).innerHTML="";
-            }
+            document.location.reload();
         }
     }
 }
