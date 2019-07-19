@@ -13,7 +13,7 @@ function playerSelection(position){
         document.getElementById("GameMode").innerHTML="<span>New Game</span>";
     }
     document.getElementById("commentR").innerHTML="";
-    if(1<moveCount < 16){
+    if(1<moveCount && moveCount< 16){
         document.getElementById("GameMode").innerHTML="<span>Opening</span>";
     }else{
         document.getElementById("GameMode").innerHTML="<span>MidGame</span>";
@@ -59,10 +59,20 @@ function playerSelection(position){
             var n = neighbors(selected);
             var neighborCheck = false;
             var i;
-            for(i=0; i<n.length; i++){
-                if(n[i]==parseInt(position)){
-                    neighborCheck = true;
+            var j,white=0;
+            for(j=0; j<mainBoard.length; j++){
+                if(mainBoard.charAt(j)=='W'){
+                    white++;
                 }
+            }
+            if(white>=3){
+                for(i=0; i<n.length; i++){
+                    if(n[i]==parseInt(position)){
+                        neighborCheck = true;
+                    }
+                }
+            }else{
+                neighborCheck = true;
             }
             if(neighborCheck){
                 document.getElementById(position).innerHTML="<span class='dot1'></span>";
@@ -182,6 +192,7 @@ function gameLife(board){
             mainBoard="xxxxxxxxxxxxxxxxxxxxxxx";
             moveCount = 0;
             document.location.reload();
+            
         }else if(blacks<=2){
             gameAlive = false;
             alert("Player Wins");
