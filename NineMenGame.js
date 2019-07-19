@@ -9,8 +9,11 @@ var staticEstimateCounter=0;
 var GameMode;
 var commment ='welcome';
 function playerSelection(position){
+    if(moveCount==1||moveCount==0){
+        document.getElementById("GameMode").innerHTML="<span>New Game</span>";
+    }
     document.getElementById("commentR").innerHTML="";
-    if(moveCount < 16){
+    if(1<moveCount < 16){
         document.getElementById("GameMode").innerHTML="<span>Opening</span>";
     }else{
         document.getElementById("GameMode").innerHTML="<span>MidGame</span>";
@@ -178,11 +181,19 @@ function gameLife(board){
             alert("Computer Wins");
             mainBoard="xxxxxxxxxxxxxxxxxxxxxxx";
             moveCount = 0;
+            var i;
+            for(i=0; i<23; i++){
+                document.getElementById(i).innerHTML="";
+            }
         }else if(blacks<=2){
             gameAlive = false;
             alert("Player Wins");
             mainBoard="xxxxxxxxxxxxxxxxxxxxxxx";
             moveCount = 0;
+            var i;
+            for(i=0; i<23; i++){
+                document.getElementById(i).innerHTML="";
+            }
         }
     }
 }
