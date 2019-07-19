@@ -6,7 +6,15 @@ var orgdepth = depth+1;
 var selected = 100;
 var closeMillVar = false;
 var staticEstimateCounter=0;
+var GameMode;
+var commment ='welcome';
 function playerSelection(position){
+    document.getElementById("commentR").innerHTML="";
+    if(moveCount < 16){
+        document.getElementById("GameMode").innerHTML="<span>Opening</span>";
+    }else{
+        document.getElementById("GameMode").innerHTML="<span>MidGame</span>";
+    }
     // console.log(typeof(parseInt(position))+" "+parseInt(position));
     if(moveCount<18){
         if(mainBoard.charAt(parseInt(position))=='x'){
@@ -22,7 +30,7 @@ function playerSelection(position){
                 closeMillVar = true;
                 alert("Mill formed!! select an opponent coin not in Mill to remove");
             }else{
-                gameLife(mainBoard,gameAlive);
+                gameLife(mainBoard);
                 gameController(mainBoard);
             }
         }
@@ -36,28 +44,43 @@ function playerSelection(position){
         }
         else if(selected==100 && mainBoard.charAt(parseInt(position))=='W'){
             selected = parseInt(position);
-            document.getElementById(selected).classList.add("selection");
+            document.getElementById(selected).innerHTML="";
+            document.getElementById(selected).innerHTML="<span class = 'selection'></span>";
+            // document.getElementsByClassName("selection").css({'background-color': '#000'});
             // console.log(selected);
         }
         else if(selected!=100 && mainBoard.charAt(parseInt(position))!='x'){
             alert("select an empty space to move");
         }
         else if(selected!=100 && mainBoard.charAt(parseInt(position))=='x'){
-            document.getElementById(position).innerHTML="<span class='dot1'></span>";
-            document.getElementById(selected).innerHTML="";
-            var temp = mainBoard.split('');
-            temp[selected] = 'x';
-            temp[parseInt(position)] = 'W';
-            mainBoard = temp.join('');
-            document.getElementById(selected).classList.remove("selection");
-            selected = 100;
-            if(closeMill(parseInt(position),mainBoard.split(''))){
-                closeMillVar = true;
-                alert("Mill formed!! select an opponent coin not in Mill to remove");
+            var n = neighbors(selected);
+            var neighborCheck = false;
+            var i;
+            for(i=0; i<n.length; i++){
+                if(n[i]==parseInt(position)){
+                    neighborCheck = true;
+                }
+            }
+            if(neighborCheck){
+                document.getElementById(position).innerHTML="<span class='dot1'></span>";
+                document.getElementById(selected).innerHTML="";
+                var temp = mainBoard.split('');
+                temp[selected] = 'x';
+                temp[parseInt(position)] = 'W';
+                mainBoard = temp.join('');
+                document.getElementById(selected).innerHTML="";
+                selected = 100;
+                if(closeMill(parseInt(position),mainBoard.split(''))){
+                    closeMillVar = true;
+                    alert("Mill formed!! select an opponent coin not in Mill to remove");
+                }else{
+                    gameLife(mainBoard);
+                    console.log("check "+mainBoard);
+                    gameController(mainBoard);
+                }
+                neighborCheck = false;
             }else{
-                gameLife(mainBoard,gameAlive);
-                console.log("check "+mainBoard);
-                gameController(mainBoard);
+                alert("Select a neighbor position to move the coin");
             }
         }
 
@@ -69,7 +92,7 @@ function playerSelection(position){
             temp[parseInt(position)] = 'x';
             mainBoard = temp.join('');
             closeMillVar = false;
-            gameLife(mainBoard,gameAlive);
+            gameLife(mainBoard);
             gameController(mainBoard);
         }else{
             alert("Select an opponent coin that is not in the Mill");
@@ -78,6 +101,15 @@ function playerSelection(position){
     console.log(moveCount);
 }
 
+
+// function sleep(milliseconds) {
+//     var start = new Date().getTime();
+//     for (var i = 0; i < 1e7; i++) {
+//          if ((new Date().getTime() - start) > milliseconds){
+//          break;
+//         }
+//     }
+// }
 
 function playerGenerateRemove(board){
 
@@ -104,7 +136,7 @@ function gameController(inputBoard){
     console.log(previousBoard+"    "+mainBoard);
     generateDisplay(mainBoard,previousBoard);
     moveCount+=1;
-    gameLife(board,gameAlive);
+    gameLife(board);
     console.log("computer move"+moveCount); 
 }
 
@@ -113,21 +145,25 @@ function generateDisplay(board,previousBoard){
     for(i=0; i<board.length; i++){
         if(board.charAt(i)=='x' && previousBoard.charAt(i)=='W'){
             document.getElementById(i).innerHTML="";
+            document.getElementById("commentR").innerHTML=`<span>Removed your coin at position ${i}</span>`
         }else if(board.charAt(i)=='x' && previousBoard.charAt(i)=='B'){
-            // document.getElementById(i).classList.add("selection");
-            // setTimeout(2000);
+            // document.getElementById(i).innerHTML="<span class='selection'></span>";
+            // sleep(2000);
             // document.getElementById(i).classList.remove("selection");
             document.getElementById(i).innerHTML="";
+            // document.getElementById("comment").innerHTML=`Removed your coin at position ${i}`
         }else if(board.charAt(i)=='B' && previousBoard.charAt(i)=='x'){
             document.getElementById(i).innerHTML="<span class='dot2'></span>";
+            document.getElementById("comment").innerHTML=`<span>Placed a coin at position ${i}</span>`
         }else if(board.charAt(i)=='W' && previousBoard.charAt(i)=='x'){
             document.getElementById(i).innerHTML="<span class='dot1'></span>";
         }
     }
 }
 
-function gameLife(board,gameAlive){
-    var i,whites,blacks;
+function gameLife(board){
+    console.log(board+" board life ");
+    var i,whites=0,blacks=0;
     for(i=0; i<board.length; i++){
         if(board.charAt(i)=='W'){
             whites++;
@@ -135,12 +171,19 @@ function gameLife(board,gameAlive){
             blacks++;
         }
     }
-    if(whites<=2){
-        gameAlive = false;
-        alert("Computer Wins");
-    }else if(blacks<=2){
-        gameAlive = false;
-        alert("Player Wins");
+    console.log("whites "+whites+" blacks "+blacks);
+    if(moveCount>=18){
+        if(whites<=2){
+            gameAlive = false;
+            alert("Computer Wins");
+            mainBoard="xxxxxxxxxxxxxxxxxxxxxxx";
+            moveCount = 0;
+        }else if(blacks<=2){
+            gameAlive = false;
+            alert("Player Wins");
+            mainBoard="xxxxxxxxxxxxxxxxxxxxxxx";
+            moveCount = 0;
+        }
     }
 }
 
