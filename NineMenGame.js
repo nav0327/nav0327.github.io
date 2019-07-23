@@ -292,7 +292,7 @@ function minMax(depth,board,alpha,beta){
                 pair = maxMin(depth-1,list[i],alpha,beta);
                 if (v > pair[1]) {
                     v = pair[1];
-                    b = pair= [0];
+                    b = pair[0];
                 }
                 if (v <= alpha) {
                     return [b, v];
@@ -485,19 +485,37 @@ function staticEstimator(board){
             if (board.charAt(i) == 'W') {
                 whitePieces++;
                 var temp = neighbors(i);
-                switch (temp.length){
+                var valcount=0;
+                var a;
+                for(a=0; a<temp.length; a++){
+                    if(board.charAt(temp[a])=='x'){
+                    valcount++;
+                    }
+                }
+                switch (valcount){
                     case 4:
                         whitePieceWeight+=0.75;
                         break;
                      case 3:
                         whitePieceWeight+=0.50;
                         break;
+                    case 2:
+                        whitePieceWeight+=0.25;
+                        break;
+                    case 1:
+                        whitePieceWeight+=0.10;
+                        break;
+                    case 0:
+                        whitePieceWeight+=0;
+                        break;
                 }
             } else if (board.charAt(i) == 'B') {
                 blackPieces++;
             }
         }
-        return ((whitePieces-blackPieces)+Math.round(whitePieceWeight));
+        var blackMilltoBe = blackMilltobe(board);
+
+        return ((whitePieces-blackPieces)+Math.round(whitePieceWeight)-(blackMilltoBe));
 }
 
 function swapPieces(b){
@@ -592,7 +610,11 @@ function staticEstimatorGame(board) {
     }
     var blackBoard = swapPieces(board);
     var list = decideHopOrMove(blackBoard);
-    var blackMilltoBe = blackMilltobe(board);
+    if(blackPieces>3){
+        var blackMilltoBe = blackMilltobeSwap(board);
+    }else{
+        var blackMilltoBe = blackMilltobe(board);
+    }
     staticEstimateCounter++;
     if (blackPieces <= 2) {
         return 10000;
@@ -601,7 +623,7 @@ function staticEstimatorGame(board) {
     } else if (list.length == 0) {
         return 10000;
     } else {
-        return (1000 * (whitePieces - blackPieces) - list.length-(10*blackMilltoBe));
+        return (1000 * (whitePieces - blackPieces) - list.length-(1000*blackMilltoBe));
     }
 }
 
@@ -669,6 +691,30 @@ for(i=0; i<board.length; i++){
             blackMilltoBe++;
         }
     }
+}
+return blackMilltoBe;
+}
+
+function blackMilltobeSwap(board){
+var blackMilltoBe=0;
+var i;
+for(i=0; i<board.length; i++){
+    if(board.charAt(i)=='x'){
+        var temp = board.split('');
+        var n = neighbors(i);
+        var x;
+        for(x=0; x<n.length; x++){
+            var tempp2 = temp;
+            if(tempp2[n[x]]=='B'){
+                tempp2[i] = 'B';
+                 tempp2[n[x]] = 'x';
+            if(closeMill(i,tempp2)) {
+                blackMilltoBe++;
+                break;
+            }
+        }
+    }
+}
 }
 return blackMilltoBe;
 }
