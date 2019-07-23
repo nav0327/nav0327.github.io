@@ -6,7 +6,12 @@ used by the computer combines both the ABOpening and the ABMidGame segments. Pla
     <head>
         <style>   
             body{
-                margin: 0px;
+                margin-top: 30px;
+                margin-left: 6px;
+                margin-right: 6px;
+                margin-bottom: 6px;
+                background: url("bodybkg.jpg");
+                background-size: 100%;
             }
             th{
                 height: 90px;
@@ -18,13 +23,13 @@ used by the computer combines both the ABOpening and the ABMidGame segments. Pla
             table{
                 height:630px;
                 width: 630px;
-                background:url("/board.jpg");
+                background:url("board.jpg");
                 background-size: 630px 630px;
                 border-spacing: 0px;
                 border: none;
                 padding: 0px;
                 letter-spacing: 0px;
-                margin: 0px;
+                margin: 0 auto;
                 word-spacing: 0px;
                 /* background-size: 100%; */
             }
@@ -53,85 +58,117 @@ used by the computer combines both the ABOpening and the ABMidGame segments. Pla
                 height:650px;
 
             }
+            #main{
+                float: left;
+                width: 60%;
+            }
+            #instructions{
+                float: right;
+                /* text-align: center; */
+                width: 40%;
+                font-size: 20px;
+                color: white;
+                font-family: "comic sans ms";
+            }
+            #instructions img{
+                display: block;
+                margin: 0 auto;
+                width: 70%;
+                height: 60%;
+            }
+            a{
+                text-decoration: none;
+                color: white;
+                font-style: italic;
+            }
+            #heading{
+                color:#feb236;
+            }
         </style>
-         <script type="text/javascript" src="NineMenGame.js"></script> 
-</head>
-<body>
-    <div id='head'>
-        
-    </div>
-    <div id='main'>
-    <table>
-        <tr>
-                <th id='20' onclick=playerSelection(this.id)></th>
+        <script type="text/javascript" src="NineMenGame.js">
+        </script>
+    </head>
+    <body>
+        <div id='head'>
+            
+        </div>
+        <div id='main'>
+        <table>
+            <tr>
+                    <th id='20' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='21' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='22' onclick=playerSelection(this.id)></th>
+            </tr>
+            <tr>
+                    <th id='NA'></th>
+                    <th id='17' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='18' onclick=playerSelection(this.id)></th>
+                    <th id='NA' ></th>
+                    <th id='19' onclick=playerSelection(this.id)></th>
+                    <th id='NA' ></th>
+            </tr>
+            <tr>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='14' onclick=playerSelection(this.id)></th>
+                    <th id='15' onclick=playerSelection(this.id)></th>
+                    <th id='16' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+            </tr>
+            <tr>
+                    <th id='8' onclick=playerSelection(this.id)></th>
+                    <th id='9' onclick=playerSelection(this.id)></th>
+                    <th id='10' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='11' onclick=playerSelection(this.id)></th>
+                    <th id='12' onclick=playerSelection(this.id)></th>
+                    <th id='13' onclick=playerSelection(this.id)></th>
+            </tr>
+            <tr>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+                    <th id='6' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='7' onclick=playerSelection(this.id)></th>
+                    <th id='NA'></th>
+                    <th id='NA'></th>
+            </tr>
+            <tr>
+                <th id='NA'></th>
+                <th id='3' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+                <th id='4' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+                <th id='5' onclick=playerSelection(this.id)></th>
+                <th id='NA'></th>
+            </tr>
+            <tr>
+                <th id='0' onclick=playerSelection(this.id)></th>
                 <th id='NA'></th>
                 <th id='NA'></th>
-                <th id='21' onclick=playerSelection(this.id)></th>
+                <th id='1' onclick=playerSelection(this.id)></th>
                 <th id='NA'></th>
                 <th id='NA'></th>
-                <th id='22' onclick=playerSelection(this.id)></th>
-        </tr>
-        <tr>
-                <th id='NA'></th>
-                <th id='17' onclick=playerSelection(this.id)></th>
-                <th id='NA'></th>
-                <th id='18' onclick=playerSelection(this.id)></th>
-                <th id='NA' ></th>
-                <th id='19' onclick=playerSelection(this.id)></th>
-                <th id='NA' ></th>
-        </tr>
-        <tr>
-                <th id='NA'></th>
-                <th id='NA'></th>
-                <th id='14' onclick=playerSelection(this.id)></th>
-                <th id='15' onclick=playerSelection(this.id)></th>
-                <th id='16' onclick=playerSelection(this.id)></th>
-                <th id='NA'></th>
-                <th id='NA'></th>
-        </tr>
-        <tr>
-                <th id='8' onclick=playerSelection(this.id)></th>
-                <th id='9' onclick=playerSelection(this.id)></th>
-                <th id='10' onclick=playerSelection(this.id)></th>
-                <th id='NA'></th>
-                <th id='11' onclick=playerSelection(this.id)></th>
-                <th id='12' onclick=playerSelection(this.id)></th>
-                <th id='13' onclick=playerSelection(this.id)></th>
-        </tr>
-        <tr>
-                <th id='NA'></th>
-                <th id='NA'></th>
-                <th id='6' onclick=playerSelection(this.id)></th>
-                <th id='NA'></th>
-                <th id='7' onclick=playerSelection(this.id)></th>
-                <th id='NA'></th>
-                <th id='NA'></th>
-        </tr>
-        <tr>
-            <th id='NA'></th>
-            <th id='3' onclick=playerSelection(this.id)></th>
-            <th id='NA'></th>
-            <th id='4' onclick=playerSelection(this.id)></th>
-            <th id='NA'></th>
-            <th id='5' onclick=playerSelection(this.id)></th>
-            <th id='NA'></th>
-        </tr>
-        <tr>
-            <th id='0' onclick=playerSelection(this.id)></th>
-            <th id='NA'></th>
-            <th id='NA'></th>
-            <th id='1' onclick=playerSelection(this.id)></th>
-            <th id='NA'></th>
-            <th id='NA'></th>
-            <th id='2' onclick=playerSelection(this.id)></th>
-        </tr>
-    </table>
-        <div>Game Mode</div>
-        <div id='GameMode'>Opening</div>
-        <div>Computer Move</div>
-        <div id='comment'></div>
-        <div id='commentR'></div>
-    </div>
-    
-</body>
+                <th id='2' onclick=playerSelection(this.id)></th>
+            </tr>
+        </table>
+        </div>
+        <div id="instructions">
+            <div>Learn the rules of the game <a href="https://en.wikipedia.org/wiki/Nine_men%27s_morris#Rules" target="_blank">here</a></div>
+            <div id="heading"> Board position references:</div>
+            <img src="instruction_board.png">
+            <div>Player: Blue, Computer: Green</div>
+            <div id="heading">Game Mode</div>
+            <div id='GameMode'>Opening</div>
+            <div id="heading">Computer Move</div>
+            <div id='comment'></div>
+            <div id='commentR'></div>
+        </div>
+    </body>
 </html>
