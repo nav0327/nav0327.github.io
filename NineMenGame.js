@@ -65,7 +65,7 @@ for(j=0; j<mainBoard.length; j++){
         white++;
     }
 }
-if(white>=3){
+if(white>3){
     for(i=0; i<n.length; i++){
         if(n[i]==parseInt(position)){
             neighborCheck = true;
