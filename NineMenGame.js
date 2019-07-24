@@ -515,7 +515,7 @@ function staticEstimator(board){
         }
         var blackMilltoBe = blackMilltobe(board);
 
-        return ((whitePieces-blackPieces-depth)+Math.round(whitePieceWeight)-(blackMilltoBe));
+        return ((whitePieces-blackPieces-depth-1)+Math.round(whitePieceWeight)-(blackMilltoBe));
 }
 
 function swapPieces(b){
